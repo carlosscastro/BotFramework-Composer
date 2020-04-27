@@ -154,7 +154,7 @@ export function CreateOptions(props) {
 
   const choiceOptions = [
     {
-      ariaLabel: 'Create from scratch' + (option === optionKeys.createFromScratch ? ' selected' : ''),
+      ariaLabel: formatMessage('Create from scratch' + (option === optionKeys.createFromScratch ? ' selected' : '')),
       key: optionKeys.createFromScratch,
       'data-testid': 'Create from scratch',
       text: formatMessage('Create from scratch'),

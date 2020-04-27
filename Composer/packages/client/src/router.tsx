@@ -42,7 +42,7 @@ const Routes = props => {
           />
           <Redirect from="/bot/:projectId/publish" to="/bot/:projectId/publish/all" noThrow />
           <Redirect from="/" to={resolveToBasePath(BASEPATH, 'home')} noThrow />
-          {/* <Redirect from="/bot/:projectId" to="/bot/:projectId/dialogs/Main" noThrow /> */}
+          <Redirect from="/bot/:projectId" to="/bot/:projectId/dialogs/Main" noThrow />
           <ProjectRouter path="/bot/:projectId">
             <SettingPage path="settings/*" />
             <LUPage path="language-understanding/:dialogId/*" />

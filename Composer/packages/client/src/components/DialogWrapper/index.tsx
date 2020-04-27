@@ -15,13 +15,7 @@ interface DialogWrapperProps extends Pick<IDialogProps, 'onDismiss'> {
 
 export const DialogWrapper: React.FC<DialogWrapperProps> = props => {
   const { isOpen, onDismiss, title, subText, children, dialogType } = props;
-  const [currentStyle, setStyle] = useState(styles[dialogType]);
-
-  useEffect(() => {
-    if (dialogType) {
-      setStyle(styles[dialogType]);
-    }
-  }, [dialogType]);
+  const currentStyle = styles[dialogType];
 
   if (!isOpen) {
     return null;

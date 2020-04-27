@@ -11,7 +11,9 @@ Cypress.Commands.add('createBot', (bobotId: string, botName?: string) => {
   cy.findByTestId('Create from template').click({ force: true });
   cy.findByTestId(`${bobotId}`).click({ force: true });
   cy.findByTestId('NextStepButton').click();
-  cy.enterTextAndSubmit('NewDialogName', `__Test${botName || bobotId}`, 'SubmitNewBotBtn');
+  cy.findByTestId('NewDialogName')
+    .clear()
+    .type(`__Test${botName || bobotId}{enter}`);
   cy.url().should('match', /\/bot\/.*\/dialogs/);
 });
 
@@ -24,13 +26,10 @@ Cypress.Commands.add('visitPage', page => {
   cy.findByTestId('ActiveLeftNavItem').should('contain', page);
 });
 
-Cypress.Commands.add('enterTextAndSubmit', (textElement: string, text: string, submitBtn?: string) => {
+Cypress.Commands.add('clearAndTypeText', (textElement: string, text: string) => {
   cy.findByTestId(textElement)
     .clear()
     .type(text);
-  if (submitBtn) {
-    cy.findByTestId(submitBtn).click();
-  }
 });
 
 Cypress.on('uncaught:exception', err => {
