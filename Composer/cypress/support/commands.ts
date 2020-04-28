@@ -11,9 +11,7 @@ Cypress.Commands.add('createBot', (bobotId: string, botName?: string) => {
   cy.findByTestId('Create from template').click({ force: true });
   cy.findByTestId(`${bobotId}`).click({ force: true });
   cy.findByTestId('NextStepButton').click();
-  cy.findByTestId('NewDialogName')
-    .clear()
-    .type(`__Test${botName || bobotId}{enter}`);
+  cy.clearAndTypeText('NewDialogName', `__Test${botName || bobotId}{enter}`);
   cy.url().should('match', /\/bot\/.*\/dialogs/);
 });
 

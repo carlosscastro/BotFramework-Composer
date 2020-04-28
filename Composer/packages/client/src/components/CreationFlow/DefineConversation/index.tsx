@@ -213,12 +213,7 @@ const DefineConversation: React.FC<DefineConversationProps> = props => {
 
           <DialogFooter>
             <DefaultButton onClick={onDismiss} text={formatMessage('Cancel')} />
-            <PrimaryButton
-              onClick={handleSubmit}
-              text={formatMessage('Next')}
-              disabled={disable}
-              data-testid="SubmitNewBotBtn"
-            />
+            <PrimaryButton onClick={handleSubmit} text={formatMessage('Next')} disabled={disable} />
           </DialogFooter>
         </form>
       </DialogWrapper>

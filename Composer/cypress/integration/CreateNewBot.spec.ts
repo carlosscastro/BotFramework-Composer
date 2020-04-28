@@ -23,7 +23,7 @@ context('Creating a new bot', () => {
     cy.findByTestId('Create from template').click();
     cy.findByTestId('TodoSample').click({ force: true });
     cy.findByTestId('NextStepButton').click();
-    cy.clearAndTypeText('NewDialogName', '__TestNewProject{enter}');
+    cy.clearAndTypeText('NewDialogName', '__TestNewProject2{enter}');
     cy.findByTestId('ProjectTree').within(() => {
       cy.findByText('__TestNewProject2').should('exist');
       cy.findByText('addtodo').should('exist');
