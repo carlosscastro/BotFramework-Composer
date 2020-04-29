@@ -22,7 +22,7 @@ jobs:
     steps:
       - task: UseDotNet@2
         inputs:
-          version: '3.1.102'
+          version: '3.1'
           packageType: runtime
       - task: DotNetCoreCLI@2
         displayName: 'dotnet build'
