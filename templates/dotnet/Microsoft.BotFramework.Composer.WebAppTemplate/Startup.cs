@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 using System;
@@ -6,6 +6,7 @@ using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.ApplicationInsights;
 using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.BotFramework;
@@ -19,11 +20,12 @@ using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using Microsoft.Bot.Builder.Integration.AspNet.Core.Skills;
 using Microsoft.Bot.Builder.Skills;
 using Microsoft.Bot.Connector.Authentication;
+using Microsoft.BotFramework.Composer.Shared;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Microsoft.Bot.Builder.ComposerBot.Json
+namespace Microsoft.BotFramework.Composer.WebApp
 {
     public class Startup
     {

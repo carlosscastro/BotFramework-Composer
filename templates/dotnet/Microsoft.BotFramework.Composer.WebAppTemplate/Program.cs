@@ -11,7 +11,7 @@ using Microsoft.Bot.Builder.AI.Luis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace Microsoft.Bot.Builder.ComposerBot.Json
+namespace Microsoft.BotFramework.Composer.WebApp
 {
     public class Program
     {

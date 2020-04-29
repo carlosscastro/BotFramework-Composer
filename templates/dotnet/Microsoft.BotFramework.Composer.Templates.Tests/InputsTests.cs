@@ -16,14 +16,14 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Tests
+namespace Microsoft.BotFramework.Composer.Templates.Tests
 {
     [TestClass]
     public class InputsTests
     {
         private static string getOsPath(string path) => Path.Combine(path.TrimEnd('\\').Split('\\'));
 
-        private static readonly string samplesDirectory = getOsPath(@"..\..\..\..\..\..\..\Composer\packages\server\assets\projects");
+        private static readonly string samplesDirectory = getOsPath(@"..\..\..\..\..\..\Composer\packages\server\assets\projects");
 
         private static ResourceExplorer resourceExplorer = new ResourceExplorer();
 

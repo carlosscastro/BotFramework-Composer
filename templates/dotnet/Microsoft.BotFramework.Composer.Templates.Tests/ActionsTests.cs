@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 using Microsoft.Bot.Builder;
@@ -16,14 +16,14 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Tests
+namespace Microsoft.BotFramework.Composer.Templates.Tests
 {
     [TestClass]
     public class ActionsTests
     {
         private static string getOsPath(string path) => Path.Combine(path.TrimEnd('\\').Split('\\'));
 
-        private static readonly string samplesDirectory = getOsPath(@"..\..\..\..\..\..\..\Composer\packages\server\assets\projects");
+        private static readonly string samplesDirectory = getOsPath(@"..\..\..\..\..\..\Composer\packages\server\assets\projects");
 
         private static string getFolderPath(string path)
         {
@@ -231,5 +231,4 @@ namespace Tests
         }
     }
 }
-  
   

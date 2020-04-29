@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 using System.Collections.Concurrent;
@@ -8,7 +8,7 @@ using Microsoft.Bot.Builder.Skills;
 using Microsoft.Bot.Schema;
 using Newtonsoft.Json;
 
-namespace Microsoft.Bot.Builder.ComposerBot.Json
+namespace Microsoft.BotFramework.Composer.Shared
 {
     /// <summary>
     /// A <see cref="SkillConversationIdFactory"/> that uses an in memory <see cref="ConcurrentDictionary{TKey,TValue}"/>

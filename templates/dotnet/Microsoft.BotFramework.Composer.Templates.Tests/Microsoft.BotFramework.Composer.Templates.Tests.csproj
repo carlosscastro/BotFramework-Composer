@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BotProject.csproj" />
+    <ProjectReference Include="..\Microsoft.BotFramework.Composer.WebAppTemplate\Microsoft.BotFramework.Composer.WebAppTemplate.csproj" />
   </ItemGroup>
 
 </Project>

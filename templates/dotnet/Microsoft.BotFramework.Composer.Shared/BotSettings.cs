@@ -1,10 +1,10 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.Bot.Builder.Azure;
 
-namespace Microsoft.Bot.Builder.ComposerBot.Json
+namespace Microsoft.BotFramework.Composer.Shared
 {
     public class BotSettings
     {
