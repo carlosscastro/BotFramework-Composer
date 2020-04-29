@@ -41,10 +41,6 @@ namespace Microsoft.BotFramework.Composer.WebApp
                 {
                     //Azure Deploy
                     builder.AddJsonFile("appsettings.deployment.json", optional: true, reloadOnChange: true);
-                }
-
-                if (!env.IsDevelopment())
-                {
                     builder.AddUserSecrets<Startup>();
                 }
 
