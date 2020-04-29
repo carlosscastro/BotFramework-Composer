@@ -20,6 +20,14 @@ jobs:
       vmImage: ubuntu-latest
 
     steps:
+      - task: UseDotNet@2
+        inputs:
+          version: '3.1.102'
+          packageType: runtime
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet build'
+        inputs:
+          projects: BotProject/Templates/CSharp
       - task: NodeTool@0
         displayName: "Use Node 12.13.0"
         inputs:
@@ -68,5 +76,9 @@ jobs:
         workingDirectory: Composer
       - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
         displayName: 'Component Detection'
+
+
+
+
 
 
