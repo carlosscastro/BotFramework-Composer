@@ -8,6 +8,7 @@ using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder.AI.Luis;
+using Microsoft.BotFramework.Composer.Shared;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
@@ -28,7 +29,7 @@ namespace Microsoft.BotFramework.Composer.WebApp
 
                 builder.AddJsonFile($"ComposerDialogs/settings/appsettings.json", optional: true, reloadOnChange: true)
                     .AddJsonFile("appsetting.json", optional: true, reloadOnChange: true)
-                    .UseLuisConfigAdaptor()
+                    .UseLuisConfigAdapter()
                     .UseLuisSettings();
 
                 if (env.IsDevelopment())

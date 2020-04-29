@@ -1,5 +1,6 @@
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.AI.Luis;
 using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.BotFramework;
 using Microsoft.Bot.Builder.Dialogs.Declarative.Resources;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -24,6 +26,38 @@ namespace Microsoft.BotFramework.Composer.FunctionTemplate
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
+            var binDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var rootDirectory = Directory.GetParent(binDirectory).FullName;
+
+            var config = new ConfigurationBuilder();
+                //.SetBasePath(context.FunctionAppDirectory)
+                //.AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
+                //.AddEnvironmentVariables()
+                //.Build();
+
+            config
+                .SetBasePath(rootDirectory)
+                .AddJsonFile($"ComposerDialogs/settings/appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsetting.json", optional: true, reloadOnChange: true)
+                .UseLuisConfigAdapter()
+                .UseLuisSettings();
+
+
+            if (Debugger.IsAttached)
+            {
+                // Local Debug
+                config.AddJsonFile("appsettings.development.json", optional: true, reloadOnChange: true);
+            }
+            else
+            {
+                //Azure Deploy
+                config.AddJsonFile("appsettings.deployment.json", optional: true, reloadOnChange: true);
+                config.AddUserSecrets<Startup>();
+            }
+
+            config.AddEnvironmentVariables();
+
+            var rootConfiguration = config.Build();
             var services = builder.Services;
 
             services.AddLogging();
@@ -43,10 +77,10 @@ namespace Microsoft.BotFramework.Composer.FunctionTemplate
             // Storage
             services.AddSingleton<IStorage>(serviceProvider =>
             {
-                IConfiguration configuration = serviceProvider.GetService<IConfiguration>();
+                //IConfiguration configuration = serviceProvider.GetService<IConfiguration>();
 
                 var settings = new BotSettings();
-                configuration.Bind(settings);
+                rootConfiguration.Bind(settings);
 
                 IStorage storage = null;
 
@@ -68,9 +102,6 @@ namespace Microsoft.BotFramework.Composer.FunctionTemplate
             services.AddSingleton<UserState>(serviceProvider => new UserState(serviceProvider.GetService<IStorage>()));
             services.AddSingleton<ConversationState>(serviceProvider => new ConversationState(serviceProvider.GetService<IStorage>()));
 
-            var binDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var rootDirectory = Directory.GetParent(binDirectory).FullName;
-
             // Resource explorer to track declarative assets
             var resourceExplorer = new ResourceExplorer().AddFolder(Path.Combine(rootDirectory, "ComposerDialogs"));
             services.AddSingleton(resourceExplorer);
@@ -79,19 +110,19 @@ namespace Microsoft.BotFramework.Composer.FunctionTemplate
             services.AddSingleton<IBotFrameworkHttpAdapter, BotFrameworkHttpAdapter>(s =>
             {
                 // Retrieve required dependencies
-                IConfiguration configuration = s.GetService<IConfiguration>();
+                //IConfiguration configuration = s.GetService<IConfiguration>();
                 IStorage storage = s.GetService<IStorage>();
                 UserState userState = s.GetService<UserState>();
                 ConversationState conversationState = s.GetService<ConversationState>();
 
                 // Register host configuration
-                HostContext.Current.Set<IConfiguration>(configuration);
+                HostContext.Current.Set<IConfiguration>(rootConfiguration);
 
                 // Bind settings
                 var settings = new BotSettings();
-                configuration.Bind(settings);
+                rootConfiguration.Bind(settings);
 
-                var adapter = new BotFrameworkHttpAdapter(new ConfigurationCredentialProvider(configuration));
+                var adapter = new BotFrameworkHttpAdapter(new ConfigurationCredentialProvider(rootConfiguration));
 
                 adapter
                   .UseStorage(storage)

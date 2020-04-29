@@ -15,10 +15,10 @@
     </None>
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>Microsoft.BotFramework.Composer.WebAppTemplate.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Microsoft.BotFramework.Composer.Shared\Microsoft.BotFramework.Composer.Shared.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>Microsoft.BotFramework.Composer.WebAppTemplate.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Microsoft.BotFramework.Composer.Shared\Microsoft.BotFramework.Composer.Shared.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />

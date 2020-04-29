@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using Microsoft.Bot.Builder;
+using System.Web.Http;
 
 namespace Microsoft.BotFramework.Composer.FunctionTemplate
 {
@@ -34,7 +35,6 @@ namespace Microsoft.BotFramework.Composer.FunctionTemplate
             // The adapter will invoke the bot.
             await _adapter.ProcessAsync(req, req.HttpContext.Response, _bot);
 
-            // TODO: capture response into result, adapt for functions differences in response type
             return new OkResult();
         }
     }
